@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center animated flipInX">
     <div class="col-md-6 text-center">
         <h3 class="text-center">Welcome</h3>
         <br>

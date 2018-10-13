@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center animated flipInX">
     <div class="col-md-4 innerText">
         <h3 class="text-center"><i class="fa fa-lock"></i> User Authentication</h3>
         <h3 class="text-center spinner" style="display: none;">
@@ -38,19 +38,18 @@
             data: $('#loginForm').serialize(),
             url: $('#loginForm').data('action'),
             success: function(data){
-                console.log(data)
                 $('.spinner').hide();
                 $('#csrf').val(data.csrf);
                 if(typeof data.status !== "undefined" && data.status === 'success'){
                     $('.innerText').prepend(`
-                        <div class="alert alert-success fade show text-center" role="alert">
+                        <div class="animated flipInX alert alert-success fade show text-center" role="alert">
                             <strong>Success:</strong> <i class="fa fa-spinner fa-spin fa-1x fa-fw text-success"></i> Redirecting...
                         </div>
                     `);
                     window.location.href = "<?php echo HOMEINDEX; ?>";
                 }else{
                     $('.innerText').prepend(`
-                        <div class="alert alert-danger fade show text-center" role="alert">
+                        <div class="animated flipInX alert alert-danger fade show text-center" role="alert">
                             <strong>Error:</strong> ${data.msg}!
                         </div>
                     `);
@@ -59,14 +58,14 @@
             },
             error: function(){
                 $('.innerText').prepend(`
-                    <div class="alert alert-danger fade show text-center" role="alert">
+                    <div class="animated flipInX alert alert-danger fade show text-center" role="alert">
                         <strong>Error:</strong>Connection Error! Please refresh the page!
                     </div>
                 `); 
+                $('.spinner').hide();
             }
         });
 
-        $('.spinner').show();
         event.preventDefault();
     });
 </script>

@@ -30,15 +30,16 @@ class UserModel extends Model{
 					'msg' => ':)'
 				]);
 		}
+		
+		if( $_SESSION['csrf'] !== $post['csrf'] ){
+			Encode::json([
+				'status' => 'error',
+				'msg' => 'CSRF Token is Invalid'
+			]);
+		}
 
 		switch ($post['action']) {
 			case 'signin':
-				if( $_SESSION['csrf'] !== $post['csrf'] ){
-					Encode::json([
-						'status' => 'error',
-						'msg' => 'CSRF Token is Invalid'
-					]);
-				}
 
 				if( 
 					!isset($post['user']) || empty($post['user']) || 
@@ -52,7 +53,7 @@ class UserModel extends Model{
 
 				$password = Generate::sha512($post['pass']);
 
-				$this->query('SELECT * FROM users WHERE user = :user AND secret = :passwd');
+				$this->query('SELECT * FROM users WHERE user = :user AND pass = :passwd');
 				$this->bind(':user',   $post['user']);
 				$this->bind(':passwd', $password);
 
@@ -73,13 +74,7 @@ class UserModel extends Model{
 				break;
 			
 			case 'signup':
-				if( $_SESSION['csrf'] !== $post['csrf'] ){
-					Encode::json([
-						'status' => 'error',
-						'msg' => 'CSRF Token is Invalid'
-					]);
-				}
-
+				
 				if( 
 					!isset($post['user'])  || empty($post['user'])  || 
 					!isset($post['pass0']) || empty($post['pass0']) ||
@@ -122,7 +117,7 @@ class UserModel extends Model{
 				}
 
 
-				$this->query('INSERT INTO users (user, secret) VALUES (:user, :passwd)');
+				$this->query('INSERT INTO users (user, pass) VALUES (:user, :passwd)');
 				$this->bind(':user',   $post['user']);
 				$this->bind(':passwd', $password);
 

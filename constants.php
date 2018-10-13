@@ -21,4 +21,5 @@
 	define('USER_SIGN_IN', ROOT_PATH.'user/signin');
 	define('USER_SIGN_UP', ROOT_PATH.'user/signup');
 	define('USER_AJAX', ROOT_PATH.'user/ajax');
+	define('HOME_AJAX', ROOT_PATH.'home/ajax');
 	define('HOMEINDEX', ROOT_PATH.'home/index');

@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center animated flipInX">
     <div class="col-md-4 innerText">
     	<h3 class="text-center"><i class="fa fa-user-plus"></i> User Registration</h3>
         <h3 class="text-center spinner" style="display: none;">
@@ -44,19 +44,18 @@
             data: $('#regForm').serialize(),
             url: $('#regForm').data('action'),
             success: function(data){
-                console.log(data)
                 $('.spinner').hide();
                 $('#csrf').val(data.csrf);
                 if(typeof data.status !== "undefined" && data.status === 'success'){
                     $('.innerText').prepend(`
-                        <div class="alert alert-success fade show text-center" role="alert">
+                        <div class="animated flipInX alert alert-success fade show text-center" role="alert">
                             <strong>Success:</strong> New record has been created!
                         </div>
                     `);
                     $('input[type="text"],input[type="password"]').val('');
                 }else{
                     $('.innerText').prepend(`
-                        <div class="alert alert-danger fade show text-center" role="alert">
+                        <div class="animated flipInX alert alert-danger fade show text-center" role="alert">
                             <strong>Error:</strong> ${data.msg}!
                         </div>
                     `);
@@ -65,14 +64,14 @@
             },
             error: function(){
                 $('.innerText').prepend(`
-                    <div class="alert alert-danger fade show text-center" role="alert">
+                    <div class="animated flipInX alert alert-danger fade show text-center" role="alert">
                         <strong>Error:</strong>Connection Error! Please refresh the page!
                     </div>
                 `); 
+                $('.spinner').hide();
             }
         });
 
-        $('.spinner').show();
         event.preventDefault();
     });
 </script>
