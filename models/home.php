@@ -38,25 +38,12 @@ class HomeModel extends Model{
 				}
 
 				$search = $post['search'];
-				$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-				if ($conn->connect_error){
-					Encode::json([
-						'status' => 'error',
-						'msg' => 'Connection error'
-					]);
-				}
-				$output = array();
-				$search = $post['search'];
-				
-				$sql = mysqli_query($conn, "SELECT * FROM books WHERE title LIKE '$search%' ORDER BY 1 DESC LIMIT 50");
 
-			    while($row = mysqli_fetch_assoc( $sql )) {
-			        array_push($output, $row);
-			    }
+				$this->query("SELECT * FROM books WHERE title LIKE '$search%' ORDER BY 1 DESC LIMIT 50");
 
 				Encode::json([
 					'status' => 'success',
-					'data' => $output
+					'data' => $this->resultSet()
 				]);
 				break;
 			
