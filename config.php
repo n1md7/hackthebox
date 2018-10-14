@@ -3,7 +3,7 @@
 	/*
 		@DEBUG global variable for error reporting
 	*/
-	define('DEBUG', true);
+	define('DEBUG', false);
 	define('LOCALHOST', true);
 
 	/*

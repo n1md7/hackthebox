@@ -8,7 +8,7 @@
 		</div>
 		<div class="form-group">
 			<form action="" method="post" id="searchForm" data-action="<?php echo HOME_AJAX;?>">
-				<input type="search" name="search" class="form-control" placeholder="search..." autofocus="" autocomplete="off">
+				<input type="search" name="search" class="form-control" placeholder="search... ex. Harry Potter" autofocus="" autocomplete="off">
 				<input type="hidden" id="csrf" name="csrf" value="<?php echo $viewmodel['csrf']; ?>">
 				<input type="hidden" name="action" value="search">
 			</form>
